@@ -10,8 +10,6 @@ import java.util.Locale;
 @Slf4j
 public class MockServiceProxy implements InvocationHandler {
 
-    private final Faker faker = new Faker(Locale.CHINA);
-
     /**
      * 调用代理
      * @return
@@ -35,7 +33,7 @@ public class MockServiceProxy implements InvocationHandler {
             if(type == boolean.class){
                 return false;
             }else if(type == int.class){
-                return faker.number().randomDigit();
+                return 0;
             }else if(type == short.class){
                 return (short) 0;
             }else if(type == long.class){

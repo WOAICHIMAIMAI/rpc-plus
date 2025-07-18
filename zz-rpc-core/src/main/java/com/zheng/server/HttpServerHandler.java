@@ -1,14 +1,17 @@
 package com.zheng.server;
 
+import com.zheng.RpcApplication;
 import com.zheng.model.RpcRequest;
 import com.zheng.model.RpcResponse;
 import com.zheng.registry.LocalRegistry;
 import com.zheng.serializer.JdkSerializer;
 import com.zheng.serializer.Serializer;
+import com.zheng.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -16,12 +19,14 @@ import java.lang.reflect.Method;
 /**
  * HTTP 请求处理
  */
+@Slf4j
 public class HttpServerHandler implements Handler<HttpServerRequest> {
 
     @Override
     public void handle(HttpServerRequest request) {
         // 指定序列化器
-        final Serializer serializer = new JdkSerializer();
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
+        System.out.println("serializer:" + serializer.getClass());
 
         // 记录日志
         System.out.println("Received request: " + request.method() + " " + request.uri());
