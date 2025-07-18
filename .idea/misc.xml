@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/example-provider/pom.xml" />
         <option value="$PROJECT_DIR$/example-common/pom.xml" />
         <option value="$PROJECT_DIR$/zz-rpc-easy/pom.xml" />
+        <option value="$PROJECT_DIR$/zz-rpc-core/pom.xml" />
       </list>
     </option>
   </component>
