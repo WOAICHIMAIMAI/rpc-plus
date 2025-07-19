@@ -1,5 +1,6 @@
 package com.zheng.conf;
 
+import com.zheng.registry.RegistryConfig;
 import com.zheng.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ public class RpcConfig {
     /**
      * 名称
      */
-    private String name = "yu-rpc";
+    private String name = "zheng-rpc";
 
     /**
      * 版本号
@@ -38,5 +39,10 @@ public class RpcConfig {
      * 序列化器
      */
     private String serializer = SerializerKeys.JDK;
+
+    /**
+     * 注册中心配置
+     */
+    private RegistryConfig registryConfig = new RegistryConfig();
 
 }
