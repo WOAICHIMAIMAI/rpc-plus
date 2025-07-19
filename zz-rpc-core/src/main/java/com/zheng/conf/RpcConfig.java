@@ -1,5 +1,6 @@
 package com.zheng.conf;
 
+import com.zheng.loadbalancer.LoadBalancerKeys;
 import com.zheng.registry.RegistryConfig;
 import com.zheng.serializer.SerializerKeys;
 import lombok.Data;
@@ -39,6 +40,11 @@ public class RpcConfig {
      * 序列化器
      */
     private String serializer = SerializerKeys.JDK;
+
+    /**
+     * 负载均衡器
+     */
+    private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
 
     /**
      * 注册中心配置
