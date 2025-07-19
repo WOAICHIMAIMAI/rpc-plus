@@ -126,8 +126,7 @@ public class EtcdRegistry implements Registry {
         }
     }
 
-
-
+    @Override
     public void destroy() {
         System.out.println("当前节点下线");
         // 下线节点

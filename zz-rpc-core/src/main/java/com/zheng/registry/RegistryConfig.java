@@ -11,7 +11,7 @@ public class RegistryConfig {
     /**
      * 注册中心地址
      */
-    private String registry = "etcd";
+    private String registry = RegistryKeys.ETCD;
 
     /**
      * 注册中心地址

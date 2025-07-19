@@ -33,6 +33,20 @@ public class ServiceProxy implements InvocationHandler {
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        // 处理 Object 类的基础方法，避免无限递归
+        if (method.getDeclaringClass() == Object.class) {
+            switch (method.getName()) {
+                case "toString":
+                    return "ServiceProxy@" + Integer.toHexString(hashCode());
+                case "hashCode":
+                    return System.identityHashCode(proxy);
+                case "equals":
+                    return proxy == args[0];
+                default:
+                    throw new UnsupportedOperationException("Unsupported method: " + method.getName());
+            }
+        }
+
         // 指定序列化器
         final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 

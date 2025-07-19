@@ -9,4 +9,6 @@ public interface RegistryKeys {
 
     String ZOOKEEPER = "zookeeper";
 
+    String REDIS = "redis";
+
 }

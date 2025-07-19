@@ -1,2 +1,3 @@
 etcd=com.zheng.registry.EtcdRegistry
 zookeeper=com.zheng.registry.ZooKeeperRegistry
+redis=com.zheng.registry.RedisRegistry

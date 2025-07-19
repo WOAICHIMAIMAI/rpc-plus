@@ -1,6 +1,8 @@
 package com.zheng.model;
 
 import cn.hutool.core.util.StrUtil;
+import com.zheng.RpcApplication;
+import com.zheng.registry.RegistryKeys;
 import lombok.Data;
 
 /**
@@ -51,7 +53,8 @@ public class ServiceMetaInfo {
      * @return
      */
     public String getServiceNodeKey() {
-        return String.format("%s/%s:%s", getServiceKey(), serviceHost, servicePort);
+        String template = RpcApplication.getRpcConfig().getRegistryConfig().getRegistry().equals(RegistryKeys.REDIS) ? "%s:%s:%s" : "%s/%s:%s";
+        return String.format(template, getServiceKey(), serviceHost, servicePort);
     }
 
     /**
