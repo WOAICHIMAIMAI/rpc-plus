@@ -1,5 +1,6 @@
 package com.zheng.provider;
 
+import cn.hutool.core.net.NetUtil;
 import com.zheng.RpcApplication;
 import com.zheng.conf.RpcConfig;
 import com.zheng.model.ServiceMetaInfo;
@@ -7,8 +8,7 @@ import com.zheng.registry.LocalRegistry;
 import com.zheng.registry.Registry;
 import com.zheng.registry.RegistryConfig;
 import com.zheng.registry.RegistryFactory;
-import com.zheng.server.HttpServer;
-import com.zheng.server.VertxHttpServer;
+import com.zheng.server.tcp.VertxTcpServer;
 import com.zheng.service.UserService;
 
 /**
@@ -38,8 +38,8 @@ public class ProviderExample {
             throw new RuntimeException(e);
         }
 
-        // 启动 web 服务
-        HttpServer httpServer = new VertxHttpServer();
-        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+        // 启动 TCP 服务
+        VertxTcpServer vertxTcpServer = new VertxTcpServer();
+        vertxTcpServer.doStart(8080);
     }
 }
