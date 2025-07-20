@@ -4,6 +4,8 @@ import com.zheng.fault.retry.RetryStrategyKeys;
 import com.zheng.loadbalancer.LoadBalancerKeys;
 import com.zheng.registry.RegistryConfig;
 import com.zheng.serializer.SerializerKeys;
+import com.zheng.tolerant.TolerantStrategy;
+import com.zheng.tolerant.TolerantStrategyKeys;
 import lombok.Data;
 
 /**
@@ -56,5 +58,7 @@ public class RpcConfig {
      * 注册中心配置
      */
     private RegistryConfig registryConfig = new RegistryConfig();
+
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 
 }

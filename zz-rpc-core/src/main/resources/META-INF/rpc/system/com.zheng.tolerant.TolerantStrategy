@@ -1,0 +1,4 @@
+failBack=com.zheng.tolerant.FailBackTolerantStrategy
+failFast=com.zheng.tolerant.FailFastTolerantStrategy
+failOver=com.zheng.tolerant.FailOverTolerantStrategy
+failSafe=com.zheng.tolerant.FailSafeTolerantStrategy

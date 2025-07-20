@@ -42,6 +42,6 @@ public class ProviderExample {
 
         // 启动 TCP 服务
         VertxTcpServer vertxTcpServer = new VertxTcpServer();
-        vertxTcpServer.doStart(8080);
+        vertxTcpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
     }
 }

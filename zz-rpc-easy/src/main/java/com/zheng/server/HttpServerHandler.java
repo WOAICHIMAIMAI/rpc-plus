@@ -28,14 +28,18 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
 
         // 异步处理 HTTP 请求
         request.bodyHandler(body -> {
+            System.out.println("收到请求，开始处理");
+            
             byte[] bytes = body.getBytes();
             RpcRequest rpcRequest = null;
             try {
                 rpcRequest = serializer.deserialize(bytes, RpcRequest.class);
+                System.out.println("请求反序列化成功: " + rpcRequest.getServiceName() + "." + rpcRequest.getMethodName());
             } catch (Exception e) {
+                System.err.println("请求反序列化失败");
                 e.printStackTrace();
             }
-
+            
             // 构造响应结果对象
             RpcResponse rpcResponse = new RpcResponse();
             // 如果请求为 null，直接返回
