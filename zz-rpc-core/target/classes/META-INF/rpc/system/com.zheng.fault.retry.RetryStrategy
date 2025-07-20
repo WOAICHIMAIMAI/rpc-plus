@@ -1,0 +1,3 @@
+no=com.zheng.fault.retry.NoRetryStrategy
+fixedInterval=com.zheng.fault.retry.FixedIntervalRetryStrategy
+exponentialInterval=com.zheng.fault.retry.FixedIntervalRetryStrategy
