@@ -6,10 +6,13 @@ import io.vertx.core.buffer.Buffer;
 import io.vertx.core.parsetools.RecordParser;
 
 /**
- * 装饰者模式（使用 recordParser 对原有的 buffer 处理能力进行增强）
+ * TCP 消息处理器包装
  */
 public class TcpBufferHandlerWrapper implements Handler<Buffer> {
 
+    /**
+     * 解析器，用于解决半包、粘包问题
+     */
     private final RecordParser recordParser;
 
     public TcpBufferHandlerWrapper(Handler<Buffer> bufferHandler) {
@@ -21,6 +24,12 @@ public class TcpBufferHandlerWrapper implements Handler<Buffer> {
         recordParser.handle(buffer);
     }
 
+    /**
+     * 初始化解析器
+     *
+     * @param bufferHandler
+     * @return
+     */
     private RecordParser initRecordParser(Handler<Buffer> bufferHandler) {
         // 构造 parser
         RecordParser parser = RecordParser.newFixed(ProtocolConstant.MESSAGE_HEADER_LENGTH);
@@ -33,6 +42,7 @@ public class TcpBufferHandlerWrapper implements Handler<Buffer> {
 
             @Override
             public void handle(Buffer buffer) {
+                // 1. 每次循环，首先读取消息头
                 if (-1 == size) {
                     // 读取消息体长度
                     size = buffer.getInt(13);
@@ -40,6 +50,7 @@ public class TcpBufferHandlerWrapper implements Handler<Buffer> {
                     // 写入头信息到结果
                     resultBuffer.appendBuffer(buffer);
                 } else {
+                    // 2. 然后读取消息体
                     // 写入体信息到结果
                     resultBuffer.appendBuffer(buffer);
                     // 已拼接为完整 Buffer，执行处理
