@@ -11,5 +11,6 @@
     <file url="file://$PROJECT_DIR$/zz-rpc-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zz-rpc-easy/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zz-rpc-easy/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zz-rpc-spring-boot-starter/src/main/java" charset="UTF-8" />
   </component>
 </project>

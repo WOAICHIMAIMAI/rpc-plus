@@ -9,11 +9,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="zz-rpc-core" />
         <module name="zz-rpc-easy" />
+        <module name="zz-rpc-spring-boot-starter" />
         <module name="example-provider" />
         <module name="example-consumer" />
         <module name="example-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="zz-rpc-spring-boot-starter" options="-parameters" />
+    </option>
   </component>
 </project>

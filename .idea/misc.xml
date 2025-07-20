@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/example-common/pom.xml" />
         <option value="$PROJECT_DIR$/zz-rpc-easy/pom.xml" />
         <option value="$PROJECT_DIR$/zz-rpc-core/pom.xml" />
+        <option value="$PROJECT_DIR$/zz-rpc-spring-boot-starter/pom.xml" />
       </list>
     </option>
   </component>
