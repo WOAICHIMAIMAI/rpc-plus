@@ -1,5 +1,6 @@
 package com.zheng.conf;
 
+import com.zheng.fault.retry.RetryStrategyKeys;
 import com.zheng.loadbalancer.LoadBalancerKeys;
 import com.zheng.registry.RegistryConfig;
 import com.zheng.serializer.SerializerKeys;
@@ -45,6 +46,11 @@ public class RpcConfig {
      * 负载均衡器
      */
     private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+
+    /**
+     * 重试策略
+     */
+    private String retryStrategy = RetryStrategyKeys.NO;
 
     /**
      * 注册中心配置

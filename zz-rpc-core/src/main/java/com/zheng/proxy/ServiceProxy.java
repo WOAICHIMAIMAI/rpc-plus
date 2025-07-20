@@ -1,11 +1,11 @@
 package com.zheng.proxy;
 
-
-
 import cn.hutool.core.collection.CollUtil;
 import com.zheng.RpcApplication;
 import com.zheng.conf.RpcConfig;
 import com.zheng.constants.RpcConstant;
+import com.zheng.fault.retry.RetryStrategy;
+import com.zheng.fault.retry.RetryStrategyFactory;
 import com.zheng.loadbalancer.LoadBalancer;
 import com.zheng.loadbalancer.LoadBalancerFactory;
 import com.zheng.model.RpcRequest;
@@ -67,7 +67,11 @@ public class ServiceProxy implements InvocationHandler {
             ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
             
             // rpc 请求
-            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            // 使用重试机制
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
+                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+            );            
             return rpcResponse.getData();
         } catch (Exception e) {
             throw new RuntimeException("调用失败");
