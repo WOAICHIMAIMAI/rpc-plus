@@ -1,0 +1,4 @@
+rpc:
+  name: zz
+  version: 2.0
+  mock: false
