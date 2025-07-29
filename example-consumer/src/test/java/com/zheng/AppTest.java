@@ -57,4 +57,16 @@ public class AppTest
         }
         System.out.println(System.currentTimeMillis() - start);
     }
+
+    public void test2()
+    {
+        UserService userService = ServiceProxyFactory.getProxy(UserService.class);
+        User user = new User();
+        user.setName("zhengjiajun");
+        // 调用
+        long start = System.currentTimeMillis();
+        User newUser = userService.getUser(user);
+        System.out.println(System.currentTimeMillis() - start);
+    }
+
 }
