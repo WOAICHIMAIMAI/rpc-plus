@@ -4,3 +4,4 @@ rpc:
   mock: false
   serializer: kryo
   serverPort: 8888
+  enableOptimizedProtocol: true

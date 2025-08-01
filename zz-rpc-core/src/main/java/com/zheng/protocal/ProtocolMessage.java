@@ -50,6 +50,13 @@ public class ProtocolMessage<T> {
         private byte type;
 
         /**
+         * 序列化器和消息类型的组合字段（优化版本）
+         * 高4位：序列化器类型 (0-15)
+         * 低4位：消息类型 (0-15)
+         */
+        private byte serializerAndType;
+
+        /**
          * 状态
          */
         private byte status;
@@ -63,6 +70,36 @@ public class ProtocolMessage<T> {
          * 消息体长度
          */
         private int bodyLength;
+
+        /**
+         * 预留字段，用于未来扩展
+         */
+        private byte reserved;
+
+        /**
+         * 设置序列化器和消息类型的组合值
+         * @param serializer 序列化器类型 (0-15)
+         * @param type 消息类型 (0-15)
+         */
+        public void setSerializerAndType(int serializer, int type) {
+            this.serializerAndType = (byte) ((serializer << 4) | (type & 0x0F));
+        }
+
+        /**
+         * 从组合字段中获取序列化器类型
+         * @return 序列化器类型 (0-15)
+         */
+        public int getSerializerFromCombined() {
+            return (serializerAndType >> 4) & 0x0F;
+        }
+
+        /**
+         * 从组合字段中获取消息类型
+         * @return 消息类型 (0-15)
+         */
+        public int getTypeFromCombined() {
+            return serializerAndType & 0x0F;
+        }
     }
 
 }

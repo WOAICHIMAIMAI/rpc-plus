@@ -61,4 +61,10 @@ public class RpcConfig {
 
     private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 
+    /**
+     * 是否启用优化协议
+     * 优化协议将序列化器和消息类型合并到一个字节中，节省网络传输
+     */
+    private boolean enableOptimizedProtocol = false;
+
 }
